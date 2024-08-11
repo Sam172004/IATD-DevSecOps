@@ -55,7 +55,7 @@ jobs:
             path: sonarqube-report.json
                            
   build:
-    needs: test
+    needs: [test, sonarqube]
     runs-on: ubuntu-latest
     steps:
       -
@@ -102,7 +102,7 @@ jobs:
         run: |
           WEEK2_SUBMIT=$(curl -X POST -H "Authorization: Bearer $AZURE_ACCESS_TOKEN" -d "https://$FQDN" https://devsecops-ver.azurewebsites.net/api/week2-submit)
           echo "Week2 submit: $WEEK2_SUBMIT"
-          
+
   dast:
     needs: [test, sonarqube]
     runs-on: ubuntu-latest
