@@ -46,8 +46,8 @@ jobs:
           path: ${{ steps.image-scan.outputs.json }}
 
   sonarqube:
-    #needs: test
-    if: true
+    needs: test
+    if: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -74,7 +74,8 @@ jobs:
             path: sonarqube-report.json
 
   dast:
-    #needs: test
+    needs: test
+    if: false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -139,7 +140,7 @@ jobs:
           path: report_json.json
                            
   build:
-    #needs: [test, sonarqube, dast]
+    needs: [test, sonarqube, dast]
     runs-on: ubuntu-latest
     steps:
       -
@@ -162,7 +163,7 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-labs:latest
 
   submit_results:
-    #needs: [build]
+    needs: [build]
     if: true
     runs-on: ubuntu-latest
     steps:
