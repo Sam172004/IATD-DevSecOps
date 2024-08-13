@@ -163,7 +163,7 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-labs:latest
 
   submit_reports:
-    needs: [build]
+    needs: [test, sonarqube, dast, build]
     if: true
     runs-on: ubuntu-latest
     steps:
