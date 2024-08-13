@@ -46,7 +46,7 @@ jobs:
           path: ${{ steps.image-scan.outputs.json }}
 
   sonarqube:
-    needs: test
+    #needs: test
     if: true
     runs-on: ubuntu-latest
     steps:
@@ -74,7 +74,7 @@ jobs:
             path: sonarqube-report.json
 
   dast:
-    needs: test
+    #needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
