@@ -140,7 +140,7 @@ jobs:
           path: report_json.json
 
   security_gate:
-    needs: [sonarqube, dast, image-scan]
+    needs: []
     if: true
     runs-on: ubuntu-latest
     steps:
@@ -203,7 +203,7 @@ jobs:
 
                            
   build:
-    needs: []
+    needs: [submit_reports]
     if: true
     permissions:
       id-token: write
@@ -240,7 +240,7 @@ jobs:
           cosign sign --yes ${IMAGE}
 
   submit_reports:
-    needs: [test, sonarqube, dast, image-scan]
+    needs: [test, sonarqube, dast, image-scan, deploy]
     if: true
     runs-on: ubuntu-latest
     steps:
