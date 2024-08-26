@@ -140,7 +140,7 @@ jobs:
           path: report_json.json
 
   security_gate:
-    needs: [test, dast, image-scan, deploy, sonarqube]
+    needs: [dast, image-scan, sonarqube]
     if: false
     runs-on: ubuntu-latest
     steps:
