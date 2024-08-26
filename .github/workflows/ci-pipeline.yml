@@ -240,7 +240,7 @@ jobs:
           cosign sign --yes ${IMAGE}
 
   submit_reports:
-    needs: [test, dast, image-scan, deploy, sonarqube]
+    needs: [test, dast, image-scan, sonarqube]
     if: true
     runs-on: ubuntu-latest
     steps:
