@@ -141,7 +141,7 @@ jobs:
 
   security_gate:
     needs: [dast, image-scan, sonarqube]
-    if: false
+    if: true
     runs-on: ubuntu-latest
     steps:
     - name: Download sonarqube-report
